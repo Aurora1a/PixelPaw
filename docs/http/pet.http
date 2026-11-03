@@ -1,0 +1,65 @@
+# ════════════════════════════════════════════
+# PixelPaw - Pet CRUD HTTP Tests
+# ════════════════════════════════════════════
+# 使用方法：在 IDEA 右侧 "HTTP" 工具栏中点击 ▶ 运行每条请求
+# ============================================================
+
+# ── 1. 新增宠物 ──────────────────────────
+POST http://localhost:8080/api/pets
+Content-Type: application/json
+
+{
+  "name": "豆豆",
+  "species": "CAT",
+  "level": 1,
+  "hunger": 90,
+  "mood": 85,
+  "energy": 60
+}
+
+###
+
+# ── 2. 再建一只 ──────────────────────────
+POST http://localhost:8080/api/pets
+Content-Type: application/json
+
+{
+  "name": "旺财",
+  "species": "DOG",
+  "level": 3
+}
+
+###
+
+# ── 3. 分页查询所有宠物 ──────────────────
+GET http://localhost:8080/api/pets?page=1&size=10
+
+###
+
+# ── 4. 按 ID 获取单只宠物 ────────────────
+GET http://localhost:8080/api/pets/1
+
+###
+
+# ── 5. 更新宠物信息 ──────────────────────
+PUT http://localhost:8080/api/pets/1
+Content-Type: application/json
+
+{
+  "name": "豆豆 updated",
+  "species": "CAT",
+  "level": 2,
+  "hunger": 70
+}
+
+###
+
+# ── 6. 逻辑删除（不是真删！deleted=1） ───
+DELETE http://localhost:8080/api/pets/1
+
+###
+
+# ── 7. 再次查询 —— 上面那条已消失 ────────
+GET http://localhost:8080/api/pets?page=1&size=10
+
+###

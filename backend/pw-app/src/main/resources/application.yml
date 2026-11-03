@@ -1,8 +1,39 @@
 server:
+  port: 8080
   servlet:
     context-path: /api
+
 management:
   endpoints:
     web:
       exposure:
         include: health
+
+# ── MySQL 数据源 ──────────────────────────────
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/pixelpaw_db?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: pw
+    password: pw123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+# ── MyBatis-Plus ──────────────────────────────
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true     # 开启下划线→驼峰自动映射（createdAt ↔ createdAt）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 控制台打印 SQL（调试用）
+  global-config:
+    db-config:
+      id-type: auto                          # ID 自增
+      logic-delete-field: deleted            # 全局逻辑删除字段名
+      logic-delete-value: 1                  # 已删除 = 1
+      logic-not-delete-value: 0              # 未删除 = 0
+
+# ── 日志级别 ──────────────────────────────────
+logging:
+  level:
+    com.pixelpaw: debug
+    com.baomidou.mybatisplus: debug
