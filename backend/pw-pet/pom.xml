@@ -41,5 +41,11 @@
       <artifactId>mybatis-plus-jsqlparser</artifactId>
       <version>${mybatis-plus-spring-boot3.version}</version>
     </dependency>
+    <!-- 只需 StpUtil 工具类，不用整套 Spring interceptor，引 core 即可 -->
+    <dependency>
+      <groupId>cn.dev33</groupId>
+      <artifactId>sa-token-core</artifactId>
+      <version>${sa-token.version}</version>
+    </dependency>
   </dependencies>
 </project>

@@ -46,3 +46,11 @@ logging:
   level:
     com.pixelpaw: debug
     com.baomidou.mybatisplus: debug
+
+# ── Sa-Token 认证 ─────────────────────────────
+sa-token:
+  token-name: Authorization   # 从哪个 Header 读 token（默认 satoken，必须改）
+  timeout: 604800             # token 有效期（秒），7 天
+  is-concurrent: true         # 同账号允许同时在线
+  is-share: true              # 多端共用同一 token
+  is-log: false               # 关闭框架冗余日志

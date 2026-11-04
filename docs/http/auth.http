@@ -1,0 +1,48 @@
+# ════════════════════════════════════════════
+# PixelPaw - Auth Tests (Sa-Token)
+# 按顺序执行；第 3 步拿到 token 后粘到第 4/5/6 步
+# ════════════════════════════════════════════
+
+# 1. 不带 token 访问受保护接口 → 期望 HTTP 401
+GET http://localhost:8080/api/pets?page=1&size=10
+
+###
+
+# 2. 注册 admin（只跑一次；重复跑提示"手机号已注册"）
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "phone": "13800000000",
+  "password": "admin123",
+  "username": "admin"
+}
+
+###
+
+# 3. 登录 → 从响应 data 里复制 token
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "phone": "13800000000",
+  "password": "admin123"
+}
+
+###
+
+# 4. 带 token 访问 → 期望 HTTP 200
+GET http://localhost:8080/api/pets?page=1&size=10
+Authorization: <粘贴第3步的 token>
+
+###
+
+# 5. 登出 → 期望 HTTP 200
+POST http://localhost:8080/api/auth/logout
+Authorization: <同一个 token>
+
+###
+
+# 6. 登出后带原 token 再访问 → 期望 HTTP 401
+GET http://localhost:8080/api/pets?page=1&size=10
+Authorization: <同一个 token>

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import cn.dev33.satoken.stp.StpUtil;
+
 @RestController
 @RequestMapping("/pets")
 @RequiredArgsConstructor
@@ -51,7 +53,7 @@ public class PetController {
     public Result<Long> add(@RequestBody @Valid PetAddRequest req) {
         Pet pet = new Pet();
         // TODO Step 5：登录做好后，从 Sa-Token 取当前登录用户 id 替换这个占位
-        pet.setUserId(1L);
+        pet.setUserId(StpUtil.getLoginIdAsLong());
         pet.setName(req.getName());
         pet.setSpecies(req.getSpecies());
         pet.setLevel(req.getLevel() != null ? req.getLevel() : 1);

@@ -10,12 +10,17 @@
   </parent>
   <artifactId>pw-app</artifactId>
   <dependencies>
+    <!-- common 模块 -->
     <dependency>
       <groupId>com.pixelpaw</groupId><artifactId>pw-common</artifactId><version>${project.version}</version>
     </dependency>
     <!-- pet 模块（核心业务） -->
     <dependency>
       <groupId>com.pixelpaw</groupId><artifactId>pw-pet</artifactId><version>${project.version}</version>
+    </dependency>
+    <!-- user 模块 -->
+    <dependency>
+      <groupId>com.pixelpaw</groupId><artifactId>pw-user</artifactId><version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId>

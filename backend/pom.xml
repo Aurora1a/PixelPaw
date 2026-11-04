@@ -21,10 +21,12 @@
     <module>pw-common</module>
     <module>pw-pet</module>
     <module>pw-app</module>
+    <module>pw-user</module>
   </modules>
 
   <properties>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sa-token.version>1.46.0</sa-token.version>
   </properties>
 </project>
