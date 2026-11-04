@@ -9,7 +9,7 @@ POST http://localhost:8080/api/pets
 Content-Type: application/json
 
 {
-  "name": "豆豆",
+  "name": "judy",
   "species": "CAT",
   "level": 1,
   "hunger": 90,
@@ -24,7 +24,7 @@ POST http://localhost:8080/api/pets
 Content-Type: application/json
 
 {
-  "name": "旺财",
+  "name": "wangwang",
   "species": "DOG",
   "level": 3
 }
@@ -37,16 +37,16 @@ GET http://localhost:8080/api/pets?page=1&size=10
 ###
 
 # ── 4. 按 ID 获取单只宠物 ────────────────
-GET http://localhost:8080/api/pets/1
+GET http://localhost:8080/api/pets/16
 
 ###
 
 # ── 5. 更新宠物信息 ──────────────────────
-PUT http://localhost:8080/api/pets/1
+PUT http://localhost:8080/api/pets/15
 Content-Type: application/json
 
 {
-  "name": "豆豆 updated",
+  "name": "judy updated",
   "species": "CAT",
   "level": 2,
   "hunger": 70

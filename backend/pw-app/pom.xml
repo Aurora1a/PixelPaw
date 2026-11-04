@@ -26,6 +26,19 @@
     <dependency>
       <groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><optional>true</optional>
     </dependency>
+
+    <!-- Spring Data Redis -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <!-- Jackson for JSON serialization (if not already included) -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    
     <!-- MySQL 驱动（运行时依赖，编译期不需要） -->
     <dependency>
       <groupId>com.mysql</groupId>

@@ -20,6 +20,15 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
 
+  # ── Redis 配置（Spring Boot 3.x 必须用 data.redis） ──
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: redis123
+      database: 0
+      timeout: 3000ms
+
 # ── MyBatis-Plus ──────────────────────────────
 mybatis-plus:
   configuration:
