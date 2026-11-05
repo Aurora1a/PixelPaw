@@ -30,7 +30,7 @@ public class AuthController {
     /** 登录：校验通过 → StpUtil.login(id) 签发 token → 返回 token 字符串 */
     @PostMapping("/login")
     public Result<String> login(@RequestBody @Valid LoginRequest req) {
-        User user = userService.login(req.getPhone(), req.getPassword());
+        User user = userService.login(req.getPhone(), req.getUsername(), req.getPassword());
         StpUtil.login(user.getId());
         return Result.ok(StpUtil.getTokenValue());
     }
@@ -60,13 +60,18 @@ public class AuthController {
     }
 
     public static class LoginRequest {
-        @NotBlank(message = "手机号不能为空")
-        private String phone;
+        
+        private String phone; 
+        private String username; 
         @NotBlank(message = "密码不能为空")
         private String password;
+        
+        public String getUsername() { return username; }
+        public void setUsername(String username) { this.username = username; }
 
         public String getPhone() { return phone; }
         public void setPhone(String phone) { this.phone = phone; }
+        
         public String getPassword() { return password; }
         public void setPassword(String password) { this.password = password; }
     }

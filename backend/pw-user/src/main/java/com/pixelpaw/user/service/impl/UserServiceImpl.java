@@ -38,10 +38,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User login(String phone, String rawPassword) {
-        User user = getByPhone(phone);
+        return login(phone, null, rawPassword);
+    }
+
+    @Override
+    public User login(String phone, String username, String rawPassword) {
+        boolean byPhone = StringUtils.hasText(phone);
+        if (byPhone == StringUtils.hasText(username)) {
+            throw new BizException(400, "请选择一种登录方式");
+        }
+        java.util.List<User> matches = byPhone
+            ? lambdaQuery().eq(User::getPhone, phone.trim()).list()
+            : lambdaQuery().eq(User::getUsername, username.trim()).list();
+        User user = matches.size() == 1 ? matches.get(0) : null;
         if (user == null || !passwordEncoder.matches(rawPassword, user.getPassword())) {
             // 故意不说“手机号还是密码错”，避免撞库枚举
-            throw new BizException(400, "手机号或密码错误");
+            throw new BizException(400, "账号或密码错误");
         }
         if (user.getStatus() != null && user.getStatus() == 0) {
             throw new BizException(403, "账号已被封禁");
